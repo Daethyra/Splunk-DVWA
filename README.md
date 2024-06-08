@@ -25,6 +25,7 @@ Part 1:
 - [ ] Test the creation of DVWA using Docker without a `compose.yml` file.
 - [ ] Find where DVWA stores access logs
 - [ ] Find where DVWA stores database logs
+- [ ] Decide whether to use PHPIDS in tandem with Splunk
 
 Part 2:
 
@@ -36,4 +37,6 @@ Part 2:
 Part 3:
 
 - [ ] Compose the virtual pentesting environment
+- [ ] Understand the difference between 'Monitor's and 'Forwarder's and which might serve the project best
 - [ ] Login to Splunk and create a 'Monitor' for DVWA's logs
+- [ ] Follow the Cyber Kill Chain framework

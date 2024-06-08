@@ -7,5 +7,6 @@ tunnels:
     addr: dvwa:80 # must be the name of the service in compose.yml
     proto: http
     domain: # your static Ngrok domain
-    oauth: # optional
-      provider: "google"
+    # optional:
+    # oauth:
+    #   provider: "google"
