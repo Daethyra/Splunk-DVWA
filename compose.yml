@@ -5,14 +5,33 @@ networks:
     driver: bridge
 
 services:
+  db:
+    image: docker.io/library/mariadb:10
+    container_name: dvwa-db
+    hostname: dvwa-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=dvwa
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=p@ssw0rd
+    volumes:
+      - dvwa:/var/lib/mysql
+    networks:
+      - dvwa-network
+    restart: unless-stopped
+
   dvwa:
     image: vulnerables/web-dvwa
     container_name: dvwa
     hostname: dvwa
+    environment:
+      - DB_SERVER=mdb
     ports:
       - "80:80"
     networks:
       - dvwa-network
+    depends_on:
+      - db
 
   splunk-receiver07:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
