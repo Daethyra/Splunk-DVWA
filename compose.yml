@@ -1,34 +1,30 @@
 version: '3.8'
 
+networks:
+  dvwa-network:
+    driver: bridge
+
 services:
   dvwa:
     image: vulnerables/web-dvwa
     container_name: dvwa
+    hostname: dvwa
     ports:
       - "80:80"
     networks:
       - dvwa-network
 
-  ngrok:
-    image: ngrok/ngrok:latest
-    container_name: ngrok
+  splunk-receiver07:
+    image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
+    container_name: splunk-receiver07
+    hostname: splunk-receiver07
     restart: unless-stopped
-    command:
-      - "start"
-      - "--all"
-      - "--config"
-      - "/etc/ngrok.yml"
-    volumes:
-      - /home/kali/.config/ngrok/ngrok.yml:/etc/ngrok.yml # path to your ngrok config file
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
     ports:
-      - 4040:4040 # exposes ngrok dashboard
+      - 8000:8000
     networks:
       - dvwa-network
     depends_on:
       - dvwa
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-networks:
-  dvwa-network:
-    driver: bridge
