@@ -5,7 +5,7 @@
 Orchestrate a containerized environment that can be used for practicing offensive security techniques and gain experience with log monitoring configuration and log analysis.
 
 <details>
-    <summary>Containers</summary>
+    <summary><u>Containers</u></summary>
 
   Damn Vulnerable Web App
   
@@ -24,6 +24,7 @@ Part 1:
 - [ ] Understand the fine details of Universal Forwarder
 - [ ] Understand the fine details of Heavy Forwarder
 - [ ] Able to explain the differences between Universal and Heavy Forwarders
+- [ ] Is it possible to monitor `/var/log/btmp`, `/var/log/faillog`, `/var/log/lastlog`, `/var/log/wtmp` considering they're binaries?
 
 - [x] Test the creation of DVWA using Docker without a `compose.yml` file.
 - [x] Find where DVWA stores access logs
@@ -35,7 +36,9 @@ Part 2:
 - [ ] Create a compose file
     - [ ] Splunk Indexer/Receiver to collect and visualize data
     - [ ] Configure DVWA's Splunk Forwarder (Universal/Heavy) to monitor:
-        - [ ] `/var/log/auth.log`, `/var/log/apache2/access.log`, and `/var/log/apache2/error.log`
+        - [ ] Authentication Logs: `/var/log/apache2/access.log`, `/var/log/btmp`
+        - [ ] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
+        - [ ] Other Files: `/etc/shadow`
         - [ ] DVWA Port 80 traffic
         - (?) High concurrent memory usage
         - (?) Near critical disk capacity
