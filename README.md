@@ -41,9 +41,13 @@ Part 2:
         - [ ] Authentication Logs: `/var/log/apache2/access.log`, `/var/log/btmp`
         - [ ] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
         - [ ] Other Files: `/etc/shadow`
-        - [ ] DVWA Port 80 traffic
-        - (?) High concurrent memory usage
-        - (?) Near critical disk capacity
+        - [ ] DVWA Port traffic:
+          - [ ] 22
+          - [ ] 80
+          - [ ] 445
+          - [ ] 3389
+        - [ ] High concurrent CPU usage
+        - [ ] Critical disk capacity
     - [ ] Figure a way to automate the Forwarder's installation and configuration post composition
       - [ ] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly
 
