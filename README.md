@@ -33,6 +33,9 @@ Part 1:
 - [x] Find where DVWA stores database logs
 - [ ] Decide whether to use PHPIDS in tandem with Splunk
 
+- [ ] Create a script to automate the installation of a Splunk Forwarder
+- [ ] Mount the script to DVWA and execute it upon finishing startup
+
 Part 2:
 
 - [ ] Create a compose file
