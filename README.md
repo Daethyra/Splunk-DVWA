@@ -18,6 +18,8 @@ Orchestrate a containerized environment that can be used for practicing offensiv
 Part 1:
 
 - [ ] Can I use BHIS Rita to find patterns in network traffic for this virtual environment?
+- [ ] Should I monitor DNS logs?
+- [ ] Can I monitor PHPIDS logs?
 
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
 - [x] Test the Splunk's dashboard
