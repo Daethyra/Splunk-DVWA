@@ -17,6 +17,8 @@ Orchestrate a containerized environment that can be used for practicing offensiv
 
 Part 1:
 
+- [ ] Can I use BHIS Rita to find patterns in network traffic for this virtual environment?
+
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
 - [x] Test the Splunk's dashboard
 - [ ] Understand the fine details of Universal Forwarder
@@ -38,6 +40,7 @@ Part 2:
         - (?) High concurrent memory usage
         - (?) Near critical disk capacity
     - [ ] Figure a way to automate the Forwarder's installation and configuration post composition
+      - [ ] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly
 
 Part 3:
 
