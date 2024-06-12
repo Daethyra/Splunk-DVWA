@@ -9,8 +9,6 @@ services:
     image: vulnerables/web-dvwa
     container_name: dvwa
     hostname: dvwa
-    environment:
-      - DB_SERVER=mdb
     ports:
       - "80:80"
     networks:
