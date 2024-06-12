@@ -34,7 +34,7 @@ Part 1:
 - [ ] Decide whether to use PHPIDS in tandem with Splunk
 
 - [ ] Create a script to automate the installation of a Splunk Forwarder
-- [ ] Mount the script to DVWA and execute it upon finishing startup
+- [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
 
 Part 2:
 
