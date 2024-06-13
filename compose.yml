@@ -18,13 +18,16 @@ services:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
     container_name: splunk-receiver07
     hostname: splunk-receiver07
+    aliases:
+      - indexer
     restart: unless-stopped
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
+      - SPLUNK_ROLE=splunk_monitor # also try splunk_indexer
     ports:
-      - 8000:8000
-      - 8089:8089
+      - 8000
+      - 8089
     networks:
       - dvwa-network
     depends_on:
@@ -34,11 +37,14 @@ services:
     image: ${UF_IMAGE:-splunk/universalforwarder:latest}
     container_name: splunk-forwarder01
     hostname: splunk-forwarder01
+    aliases:
+      - forwarder
     restart: unless-stopped
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
       - SPLUNK_ADD=tcp 80,monitor /var/log/apache2/access.log, monitor /var/log/apache2/error.log,monitor /var/mysql/error.log,monitor /etc/shadow
+      - SPLUNK_ROLE=splunk_universal_forwarder
     ports:
       - 8089
     networks:
