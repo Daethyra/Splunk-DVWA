@@ -30,9 +30,6 @@ Part 1:
 - [x] Find where DVWA stores database logs
 - [x] Decide whether to use PHPIDS in tandem with Splunk
 
-- [ ] Create a script to automate the installation of a Splunk Forwarder
-  - [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
-  - [ ] NOTE: DVWA doesn't have `wget` or `curl`, but has `dpkg`. It may be best to just download the forwarder file onto the host before mounting it directly in `compose.yml` with a volume command like: volumes: `/home/kali/Desktop/splunk_forwarder/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
 
 Part 2:
 
@@ -47,6 +44,9 @@ Part 2:
         - [ ] <s>Critical disk capacity</s>
         - [ ] PHPIDS logs
     - [ ] Figure a way to automate the Forwarder's installation and configuration post composition
+      - [ ] Create a script to automate the installation of a Splunk Forwarder
+        - [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
+        - [ ] NOTE: DVWA doesn't have `wget` or `curl`, but has `dpkg`. It may be best to just download the forwarder file onto the host before mounting it directly in `compose.yml` with a volume command like: volumes: `/home/kali/Desktop/splunk_forwarder/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
       - [x] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly
 
 Part 3:
