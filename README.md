@@ -24,7 +24,6 @@ Part 1:
 - [ ] Understand the fine details of Universal Forwarder
 - [ ] Understand the fine details of Heavy Forwarder
 - [ ] Able to explain the differences between Universal and Heavy Forwarders
-- [ ] Is it possible to monitor `/var/log/btmp`, `/var/log/faillog`, `/var/log/lastlog`, `/var/log/wtmp` considering they're binaries?
 
 - [x] Test the creation of DVWA using Docker without a `compose.yml` file.
 - [x] Find where DVWA stores access logs
