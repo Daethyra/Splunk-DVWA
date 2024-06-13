@@ -24,7 +24,24 @@ services:
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
     ports:
       - 8000:8000
+      - 8089:8089
     networks:
       - dvwa-network
     depends_on:
       - dvwa
+
+  splunk-forwarder01:
+    image: ${UF_IMAGE:-splunk/universalforwarder:latest}
+    container_name: splunk-forwarder01
+    hostname: splunk-forwarder01
+    restart: unless-stopped
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
+      - SPLUNK_ADD=tcp 80,monitor /var/log/apache2/access.log, monitor /var/log/apache2/error.log,monitor /var/mysql/error.log,monitor /etc/shadow
+    ports:
+      - 8089
+    networks:
+      - dvwa-network
+    depends_on:
+      - splunk-receiver07
