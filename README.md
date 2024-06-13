@@ -52,7 +52,7 @@ Part 2:
             2. `echo 'Splunk Forwarder Installed'`
             3. `export SPLUNK_HOME=/opt/splunkforwarder >> ~/.profile` OR [while in a CLI session](https://docs.splunk.com/Documentation/Splunk/9.2.1/Admin/AbouttheCLI#:~:text=To%20set%20the%20%24SPLUNK_HOME%20environment%20variable%20while%20working%20in%20a%20CLI%20session%3A "Documentation"): `source /opt/splunk/bin/setSplunkEnv` & skip step 4
             4. `export PATH=$SPLUNK_HOME/bin:$PATH`
-            5. `splunk add forward-server idx1.mycompany.com:9997` OR try adding "./", like: `./splunk add forward-server idx1.mycompany.com:9997`
+            5. `splunk add forward-server idx1.mycompany.com:9997` OR navigate to `$SPLUNK_HOME/bin` and use: `./splunk add forward-server idx1.mycompany.com:9997`
             6. `splunk add monitor /var/log/apache2/access.log`
             7. `splunk add monitor /var/log/apache2/error.log`
             8. `splunk add monitor /var/log/mysql/error.log`
