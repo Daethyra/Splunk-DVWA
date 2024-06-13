@@ -23,7 +23,7 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
-      - SPLUNK_ROLE=splunk_monitor # also try splunk_indexer
+      - SPLUNK_ROLE=splunk_deployment_server # also try splunk_indexer
     ports:
       - 8000
       - 8089
