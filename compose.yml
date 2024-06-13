@@ -26,8 +26,8 @@ services:
       #- SPLUNK_ROLE=splunk_deployment_server # also try splunk_indexer
       - DEBUG=true
     ports:
-      - 8000
-      - 8089
+      - 8000:8000
+      - 8089:8089
     networks:
       dvwa-network:
         aliases:
@@ -48,7 +48,7 @@ services:
       #- SPLUNK_DEPLOYMENT_SERVER=receiver
       - DEBUG=true
     ports:
-      - 8089
+      - 8090:8089
     networks:
       dvwa-network:
         aliases:
