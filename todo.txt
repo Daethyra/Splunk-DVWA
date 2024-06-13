@@ -1,0 +1,2 @@
+1. try using splunk_roles to get the forwarder talking to the monitor
+2. test the difference between what docker-compose builds based on splunk roles `splunk_indexer` vs `splunk_monitor`

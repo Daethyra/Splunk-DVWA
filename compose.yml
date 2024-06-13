@@ -23,7 +23,8 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
-      - SPLUNK_ROLE=splunk_deployment_server # also try splunk_indexer
+      #- SPLUNK_ROLE=splunk_deployment_server # also try splunk_indexer
+      - DEBUG=true
     ports:
       - 8000
       - 8089
@@ -43,7 +44,9 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
       - SPLUNK_ADD=tcp 80,monitor /var/log/apache2/access.log,monitor /var/log/apache2/error.log,monitor /var/mysql/error.log,monitor /etc/shadow
-      - SPLUNK_ROLE=splunk_universal_forwarder
+      #- SPLUNK_ROLE=splunk_universal_forwarder
+      #- SPLUNK_DEPLOYMENT_SERVER=receiver
+      - DEBUG=true
     ports:
       - 8089
     networks:
