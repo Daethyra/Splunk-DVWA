@@ -43,7 +43,7 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
-      - SPLUNK_ADD=tcp 80,monitor /var/log/apache2/access.log, monitor /var/log/apache2/error.log,monitor /var/mysql/error.log,monitor /etc/shadow
+      - SPLUNK_ADD=tcp 80,monitor /var/log/apache2/access.log,monitor /var/log/apache2/error.log,monitor /var/mysql/error.log,monitor /etc/shadow
       - SPLUNK_ROLE=splunk_universal_forwarder
     ports:
       - 8089
