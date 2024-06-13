@@ -1,5 +1,7 @@
 # Security Incident Detection and Response with Splunk
 
+A Docker-based virtual lab for cybersecurity training, focused on configuring a Splunk Indexer and Damn Vulnerable Web App (DVWA) with a Splunk Forwarder. The setup provides an easily redployable environment ideal for aspiring penetration testers and incident responders.
+
 ## Intention
 
 Orchestrate a containerized environment that can be used for practicing offensive security techniques and gain experience with log monitoring configuration and log analysis.
@@ -17,10 +19,6 @@ Orchestrate a containerized environment that can be used for practicing offensiv
 
 Part 1:
 
-- [ ] Can I use BHIS Rita to find patterns in network traffic for this virtual environment?
-- [ ] Should I monitor DNS logs?
-- [ ] Can I monitor PHPIDS logs?
-
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
 - [x] Test the Splunk's dashboard
 - [ ] Understand the fine details of Universal Forwarder
@@ -31,7 +29,7 @@ Part 1:
 - [x] Test the creation of DVWA using Docker without a `compose.yml` file.
 - [x] Find where DVWA stores access logs
 - [x] Find where DVWA stores database logs
-- [ ] Decide whether to use PHPIDS in tandem with Splunk
+- [x] Decide whether to use PHPIDS in tandem with Splunk
 
 - [ ] Create a script to automate the installation of a Splunk Forwarder
   - [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
@@ -42,18 +40,15 @@ Part 2:
 - [ ] Create a compose file
     - [ ] Splunk Indexer/Receiver to collect and visualize data
     - [ ] Configure DVWA's Splunk Forwarder (Universal/Heavy) to monitor:
-        - [ ] Authentication Logs: `/var/log/apache2/access.log`, `/var/log/btmp`
-        - [ ] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
-        - [ ] Other Files: `/etc/shadow`
-        - [ ] DVWA Port traffic:
-          - [ ] 22
-          - [ ] 80
-          - [ ] 445
-          - [ ] 3389
-        - [ ] High concurrent CPU usage
-        - [ ] Critical disk capacity
+        - [x] Authentication Logs: `/var/log/apache2/access.log`
+        - [x] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
+        - [x] Other Files: `/etc/shadow`
+        - [x] DVWA Port 80
+        - [ ] <s>High concurrent CPU usage</s>
+        - [ ] <s>Critical disk capacity</s>
+        - [ ] PHPIDS logs
     - [ ] Figure a way to automate the Forwarder's installation and configuration post composition
-      - [ ] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly
+      - [x] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly
 
 Part 3:
 
