@@ -3,6 +3,7 @@ version: '3.8'
 networks:
   dvwa-network:
     driver: bridge
+    attachable: true
 
 services:
   dvwa:
@@ -18,8 +19,6 @@ services:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
     container_name: splunk-receiver07
     hostname: splunk-receiver07
-    aliases:
-      - indexer
     restart: unless-stopped
     environment:
       - SPLUNK_START_ARGS=--accept-license
@@ -29,7 +28,9 @@ services:
       - 8000
       - 8089
     networks:
-      - dvwa-network
+      dvwa-network:
+        aliases:
+          - receiver
     depends_on:
       - dvwa
 
@@ -48,6 +49,8 @@ services:
     ports:
       - 8089
     networks:
-      - dvwa-network
+      dvwa-network:
+        aliases:
+          - forwarder
     depends_on:
       - splunk-receiver07
