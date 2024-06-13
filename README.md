@@ -21,7 +21,7 @@ Part 1:
 
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
 - [x] Test the Splunk's dashboard
-- [ ] Understand the fine details of Universal Forwarder
+- [x] Understand the fine details of Universal Forwarder
 - [ ] Understand the fine details of Heavy Forwarder
 - [ ] Able to explain the differences between Universal and Heavy Forwarders
 
@@ -47,7 +47,7 @@ Part 2:
       - [ ] Create a script to automate the installation of a Splunk Forwarder
         - [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
         - [ ] NOTE: DVWA doesn't have `wget` or `curl`, but has `dpkg`. It may be best to just download the forwarder file onto the host before mounting it directly in `compose.yml` with a volume command like: volumes: `/home/kali/Desktop/splunk_forwarder/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
-        - [ ] [Installation Documentation](https://docs.splunk.com/Documentation/Forwarder/9.2.1/Forwarder/Installanixuniversalforwarder#Install_the_universal_forwarder_on_Linux:~:text=the%20CAP_DAC_READ_SEARCH%20capability.-,Install%20on%20Linux,-As%20of%20Splunk)
+        - [x] [Installation Documentation](https://docs.splunk.com/Documentation/Forwarder/9.2.1/Forwarder/Installanixuniversalforwarder#Install_the_universal_forwarder_on_Linux:~:text=the%20CAP_DAC_READ_SEARCH%20capability.-,Install%20on%20Linux,-As%20of%20Splunk)
       - [x] [Simplest implementation](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder) seems to be adding a Forwarder container in the compose file and configuring it accordingly</details>
 
 Part 3:
