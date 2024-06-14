@@ -22,8 +22,8 @@ Part 1:
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
 - [x] Test the Splunk's dashboard
 - [x] Understand the fine details of Universal Forwarder
-- [ ] Understand the fine details of Heavy Forwarder
-- [ ] Able to explain the differences between Universal and Heavy Forwarders
+- [x] Understand the fine details of Heavy Forwarder
+- [x] Able to explain the differences between Universal and Heavy Forwarders
 
 - [x] Test the creation of DVWA using Docker without a `compose.yml` file.
 - [x] Find where DVWA stores access logs
@@ -34,7 +34,7 @@ Part 1:
 Part 2:
 
 - [ ] Create a compose file
-    - [ ] Splunk Indexer/Receiver to collect and visualize data
+    - [x] Splunk Indexer/Receiver to collect and visualize data
     - [ ] Configure DVWA's Splunk Forwarder (Universal/Heavy) to monitor:
         - [x] Authentication Logs: `/var/log/apache2/access.log`
         - [x] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
@@ -64,8 +64,7 @@ Part 2:
 Part 3:
 
 - [ ] Compose the virtual pentesting environment
-  - [ ] Is everything working properly?
-    - [ ] Check Splunk Receiver dashboard for forwarder connections
+- [ ] Check Splunk Receiver dashboard for forwarder connections
 - [ ] Create Alerts for all monitored data
 
 - [ ] Follow the Cyber Kill Chain framework
