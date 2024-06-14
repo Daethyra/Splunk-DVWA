@@ -24,11 +24,9 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
     ports:
-      - 8000:8000
-      - 8089:8089
+      - 8000:8000 # web dashboard
+      - 8089:8089 # listen for forwarders
     networks:
       dvwa-network:
-        aliases:
-          - receiver
     depends_on:
       - dvwa
