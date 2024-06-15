@@ -43,12 +43,12 @@ Part 2:
         - [ ] <s>High concurrent CPU usage</s>
         - [ ] <s>Critical disk capacity</s>
         - [ ] PHPIDS logs
-    - [ ] <details><summary>Figure a way to automate the Forwarder's installation and configuration post composition</summary>
-      - [ ] Solution 1: Create a script to automate the installation of a Splunk Forwarder
-        - [ ] Add command to `compose.yml`: `sh -c "install-splunk-forwarder.sh && echo 'Splunk Forwarder Installed'"`
-        - [ ] NOTE: DVWA doesn't have `wget` or `curl`, but has `dpkg`. It may be best to just download the forwarder file onto the host before mounting it directly in `compose.yml` with a volume command like: volumes: `/home/kali/Desktop/splunk_forwarder/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
-          - [`install-splunk-forwarder.sh`](https://docs.splunk.com/Documentation/Forwarder/9.2.1/Forwarder/Installanixuniversalforwarder "Universal Forwarder Installation Documentation: *nix"):
-            1. `dpkg -i /opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
+    - [x] <details><summary>Figure a way to automate the Forwarder's installation and configuration post composition</summary>
+      - [x] Solution 1: Create a script to automate the installation of a Splunk Forwarder
+        - [x] Add command to `compose.yml`: `sh -c "install_splunk_forwarder.sh"`
+        - [x] NOTE: DVWA doesn't have `wget` or `curl`, but has `dpkg`. It may be best to just download the forwarder file onto the host before mounting it directly in `compose.yml` with a volume command like: volumes: `/home/kali/Desktop/splunk_forwarder/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/opt/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
+          - [`install_splunk_forwarder.sh`](https://docs.splunk.com/Documentation/Forwarder/9.2.1/Forwarder/Installanixuniversalforwarder "Universal Forwarder Installation Documentation: *nix"):
+            1. `dpkg -i /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb`
             2. `echo 'Splunk Forwarder Installed'`
             3. `export SPLUNK_HOME=/opt/splunkforwarder >> ~/.profile` OR [while in a CLI session](https://docs.splunk.com/Documentation/Splunk/9.2.1/Admin/AbouttheCLI#:~:text=To%20set%20the%20%24SPLUNK_HOME%20environment%20variable%20while%20working%20in%20a%20CLI%20session%3A "Documentation"): `source /opt/splunk/bin/setSplunkEnv` & skip step 4
             4. `export PATH=$SPLUNK_HOME/bin:$PATH`
@@ -58,8 +58,8 @@ Part 2:
             8. `splunk add monitor /var/log/mysql/error.log`
             9. `splunk add monitor /etc/shadow`
             10. `splunk add tcp 80` OR try: `splunk add monitor 80`
-      - [ ] Solution 2: requires I create the `inputs.conf` and `outputs.conf` before composition runtime, and that these configuration files are mounted in a safe directory being being copied to `$SPLUNK_HOME/etc/system/local` post installation of the Splunk Forwarder on DVWA.
-      - [x] [Solution 3](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder): Add a Universal Forwarder container in the compose file and configuring it using `SPLUNK_ADD`</details>
+      - [ ] <s>Solution 2: requires I create the `inputs.conf` and `outputs.conf` before composition runtime, and that these configuration files are mounted in a safe directory being being copied to `$SPLUNK_HOME/etc/system/local` post installation of the Splunk Forwarder on DVWA.</s>
+      - [x] <s>[Solution 3](https://splunk.github.io/docker-splunk/EXAMPLES.html#create-standalone-and-universal-forwarder): Add a Universal Forwarder container in the compose file and configuring it using `SPLUNK_ADD`</s></details>
 
 Part 3:
 
