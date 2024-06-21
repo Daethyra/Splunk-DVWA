@@ -13,12 +13,27 @@ echo $INSTALL $BEGIN
 dpkg -i /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb
 echo $INSTALL $DONE
 
-# Add Splunk home to path
+# Configure Splunk Home
 echo $ENV $BEGIN
 export SPLUNK_HOME=/opt/splunkforwarder >> ~/.profile
 echo $ENV "SPLUNK_HOME" $DONE
+
+# Create Splunk User
+useradd -m splunkfwd
+groupadd splunkfwd
+
+# Add Splunk bin to path
 export PATH=$SPLUNK_HOME/bin:$PATH
+mkdir $SPLUNK_HOME
 echo $ENV $COMPLETE
+
+# Create Splunk user role and change $SPLUNK_HOME ownership
+useradd -m splunkfwd
+groupadd splunkfwd
+chown -R splunkfwd:splunkfwd $SPLUNK_HOME
+
+# Start Splunk
+$SPLUNK_HOME/bin/splunk start --accept-license
 
 # Configure Forwarder settings
 echo $CONF_MON $BEGIN
