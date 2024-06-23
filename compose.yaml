@@ -15,9 +15,10 @@ services:
     networks:
       - dvwa-network
     volumes:
+      - ./configs:/tmp/configs
       - /home/kali/Desktop/hacklabs/Splunk-DVWA/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb
-      - /home/kali/Desktop/hacklabs/Splunk-DVWA/install_splunk_forwarder.sh:/tmp/install_splunk_forwarder.sh
-    command: sh -c "/tmp/install_splunk_forwarder.sh"
+      - ./install_splunk_forwarder.sh:/tmp/install_splunk_forwarder.sh
+    #command: sh -c "/tmp/install_splunk_forwarder.sh"
 
   splunk-receiver:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
