@@ -6,15 +6,6 @@ A Docker-based virtual lab for cybersecurity training, focused on configuring a 
 
 Orchestrate a containerized environment that can be used for practicing offensive security techniques and gain experience with log monitoring configuration and log analysis.
 
-<details>
-    <summary><u>Containers</u></summary>
-
-  Damn Vulnerable Web App
-  
-  Splunk
-  
-</details>
-
 ## Objectives
 
 <details>
@@ -34,6 +25,10 @@ Part 1:
 
 
 Part 2:
+
+- [ ] Edit the original DVWA Dockerfile
+  - [ ] Ensure all tools and libraries splunk requires are present
+    - wget, curl, 
 
 - [ ] Create a compose file
     - [x] Splunk Indexer/Receiver to collect and visualize data
@@ -73,4 +68,7 @@ Part 3:
   - [ ] Insert the seven steps below (Recon, Weaponization, Delivery, Exploitation, Installation, C2, Actions on Objectives)
     - [ ] Add specific objectives to complete that are required before moving to the next step
 
-<details>
+</details>
+
+## Setup Instructions
+

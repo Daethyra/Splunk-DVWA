@@ -28,9 +28,6 @@ echo $ENV "SPLUNK_HOME" $DONE
 export PATH=$SPLUNK_HOME/bin:$PATH
 echo $ENV "splunk bin" $COMPLETE
 
-# Start Splunk
-$SPLUNK_HOME/bin/splunk start --accept-license
-
 # Configure Forwarder settings
 echo $CONF_MON $BEGIN
 
@@ -50,6 +47,12 @@ echo $CONF_MON $BEGIN
 # echo $CONF_MON $COMPLETE
 
 ### ADD CONFIG FILE COPYING HERE ###
+cp /tmp/configs/inputs.conf $SPLUNK_HOME/etc/system/local/inputs.conf
+cp /tmp/configs/outputs.conf $SPLUNK_HOME/etc/system/local/outputs.conf
+cp /tmp/configs/server.conf $SPLUNK_HOME/etc/system/local/server.conf
+
+# Start Splunk
+$SPLUNK_HOME/bin/splunk start --accept-license
 
 # Finish
 echo $INSTALL $COMPLETE
