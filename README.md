@@ -17,6 +17,8 @@ Orchestrate a containerized environment that can be used for practicing offensiv
 
 ## Objectives
 
+<details>
+  <summary>Roadmap Checklist</summary>
 Part 1:
 
 - [x] Test the creation and configuration of a Splunk Docker container without using a `compose.yml` file.
@@ -70,3 +72,5 @@ Part 3:
 - [ ] Follow the Cyber Kill Chain framework
   - [ ] Insert the seven steps below (Recon, Weaponization, Delivery, Exploitation, Installation, C2, Actions on Objectives)
     - [ ] Add specific objectives to complete that are required before moving to the next step
+
+<details>
