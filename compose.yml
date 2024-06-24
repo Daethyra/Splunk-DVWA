@@ -17,14 +17,10 @@ services:
     hostname: dvwa
     environment:
       - DB_SERVER=db
-    volumes:
-      - ./config:/tmp/config
-      - ./install_splunk_forwarder.sh:/tmp/install_splunk_forwarder.sh
     networks:
       - dvwa-network
     ports:
       - "80:80"
-    #command: sh -c "/tmp/install_splunk_forwarder.sh"
     restart: unless-stopped
     depends_on:
       - db
