@@ -1,5 +1,8 @@
 version: '3.8'
 
+volumes:
+  dvwa:
+
 networks:
   dvwa-network:
     driver: bridge
@@ -7,19 +10,38 @@ networks:
 
 services:
   dvwa:
-    #image: vulnerables/web-dvwa
     build: .
+    image: vulnerables/web-dvwa
+    pull_policy: build
     container_name: dvwa
     hostname: dvwa
-    ports:
-      - "80:80"
-    networks:
-      - dvwa-network
+    environment:
+      - DB_SERVER=db
     volumes:
       - ./config:/tmp/config
-      - /home/kali/Desktop/hacklabs/Splunk-DVWA/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb
       - ./install_splunk_forwarder.sh:/tmp/install_splunk_forwarder.sh
+      - /home/kali/Desktop/hacklabs/Splunk-DVWA/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb
+    networks:
+      - dvwa-network
+    ports:
+      - "80:80"
     #command: sh -c "/tmp/install_splunk_forwarder.sh"
+    restart: unless-stopped
+    depends_on:
+      - db
+  
+  db:
+    image: docker.io/library/mariadb:10
+    environment:
+      - MYSQL_ROOT_PASSWORD=dvwa
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=p@ssw0rd
+    volumes:
+      - dvwa:/var/lib/mysql
+    networks:
+      - dvwa-network
+    restart: unless-stopped
 
   splunk-receiver:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
