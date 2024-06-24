@@ -1,4 +1,4 @@
-# Security Incident Detection and Response with Splunk
+# Incident Detection with Splunk
 
 A Docker-based virtual lab for cybersecurity training, focused on configuring a Splunk Indexer and Damn Vulnerable Web App (DVWA) with a Splunk Forwarder. The setup provides an easily redployable environment ideal for aspiring penetration testers and incident responders.
 
@@ -26,20 +26,20 @@ Part 1:
 
 Part 2:
 
-- [ ] Edit the original DVWA Dockerfile
-  - [ ] Ensure all tools and libraries splunk requires are present
+- [x] Edit the original DVWA Dockerfile
+  - [x] Ensure all tools and libraries splunk requires are present
     - wget, curl, 
 
-- [ ] Create a compose file
+- [x] Create a compose file
     - [x] Splunk Indexer/Receiver to collect and visualize data
-    - [ ] Configure DVWA's Splunk Forwarder (Universal/Heavy) to monitor:
+    - [x] Configure DVWA's Splunk Forwarder (Universal/Heavy) to monitor:
         - [x] Authentication Logs: `/var/log/apache2/access.log`
         - [x] Error Logs: `/var/log/apache2/error.log`, `/var/mysql/error.log`
         - [x] Other Files: `/etc/shadow`
         - [x] DVWA Port 80
         - [ ] <s>High concurrent CPU usage</s>
         - [ ] <s>Critical disk capacity</s>
-        - [ ] PHPIDS logs
+        - [x] PHPIDS logs
     - [x] <details><summary>Figure a way to automate the Forwarder's installation and configuration post composition</summary>
       - [x] Solution 1: Create a script to automate the installation of a Splunk Forwarder
         - [x] Add command to `compose.yml`: `sh -c "install_splunk_forwarder.sh"`
@@ -72,3 +72,16 @@ Part 3:
 
 ## Setup Instructions
 
+### Step by Step ⚒️
+1. Clone the Splunk-DVWA repo
+>> `git clone https://github.com/Daethyra/Splunk-DVWA.git`
+
+2. Clone the DVWA repository
+>> `git clone https://github.com/digininja/DVWA.git`
+
+3. Copy the following files to the newly cloned DVWA repository directory
+  - `compose.yml`
+  - `Dockerfile`
+  - 'config' directory
+
+4. 
