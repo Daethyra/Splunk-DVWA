@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 # https://www.php.net/manual/en/image.installation.php
 RUN apt-get update \
- && apt-get upgrade -y && \
+ && apt-get upgrade -y \
  && export DEBIAN_FRONTEND=noninteractive \
  && apt-get install -y zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev iputils-ping wget curl \
  && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
