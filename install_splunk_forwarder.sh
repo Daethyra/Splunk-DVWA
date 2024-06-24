@@ -31,25 +31,8 @@ echo $ENV "splunk bin" $COMPLETE
 # Configure Forwarder settings
 echo $CONF_MON $BEGIN
 
-### MOVE THESE TO CONFIG FILE ###
-# splunk add forward-server 127.0.0.1:9997
-# echo $CONF_MON "forward server" $DONE
-# splunk add monitor /var/log/apache2/access.log
-# echo $CONF_MON "apache access log" $DONE
-# splunk add monitor /var/log/apache2/error.log
-# echo $CONF_MON "apache error log" $DONE
-# splunk add monitor /var/log/mysql/error.log
-# echo $CONF_MON "mysql error log" $DONE
-# splunk add monitor /etc/shadow
-# echo $CONF_MON "shadow file" $DONE
-# splunk add tcp 80
-# echo $CONF_MON "tcp 80" $DONE
-# echo $CONF_MON $COMPLETE
-
-### ADD CONFIG FILE COPYING HERE ###
-cp /tmp/configs/inputs.conf $SPLUNK_HOME/etc/system/local/inputs.conf
-cp /tmp/configs/outputs.conf $SPLUNK_HOME/etc/system/local/outputs.conf
-cp /tmp/configs/server.conf $SPLUNK_HOME/etc/system/local/server.conf
+# Copy all config files
+cp /tmp/config/*.conf $SPLUNK_HOME/etc/system/local/
 
 # Start Splunk
 $SPLUNK_HOME/bin/splunk start --accept-license
