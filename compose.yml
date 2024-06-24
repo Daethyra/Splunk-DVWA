@@ -17,6 +17,7 @@ services:
     hostname: dvwa
     environment:
       - DB_SERVER=db
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
     networks:
       - dvwa-network
     ports:

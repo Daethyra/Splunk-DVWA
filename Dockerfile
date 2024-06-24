@@ -20,7 +20,6 @@ RUN apt-get update \
 
 # Create Splunk user and group
 RUN useradd -m splunkfwd \
- && groupadd splunkfwd \
  # Install Splunk Forwarder
  && dpkg -i /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb \
  # Change ownership of $SPLUNK_HOME
@@ -33,9 +32,6 @@ ENV PATH=$SPLUNK_HOME/bin:$PATH
 
 # Install custom Forwarder configurations
 COPY --chown=splunkfwd:splunkfwd config/*.conf $SPLUNK_HOME/etc/system/local/
-
-# Start Splunk
-RUN sh -c 'splunk start --accept-license'
 
 # Switch back to root before copying DVWA's files
 USER root
