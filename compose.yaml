@@ -7,7 +7,8 @@ networks:
 
 services:
   dvwa:
-    image: vulnerables/web-dvwa
+    #image: vulnerables/web-dvwa
+    build: .
     container_name: dvwa
     hostname: dvwa
     ports:
