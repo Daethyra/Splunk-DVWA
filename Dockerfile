@@ -35,7 +35,7 @@ ENV PATH=$SPLUNK_HOME/bin:$PATH
 COPY --chown=splunkfwd:splunkfwd config/*.conf $SPLUNK_HOME/etc/system/local/
 
 # Start Splunk
-RUN su splunkfwd -c 'splunk start --accept-license'
+RUN sh -c 'splunk start --accept-license'
 
 # Switch back to root before copying DVWA's files
 USER root
