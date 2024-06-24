@@ -20,7 +20,6 @@ services:
     volumes:
       - ./config:/tmp/config
       - ./install_splunk_forwarder.sh:/tmp/install_splunk_forwarder.sh
-      - /home/kali/Desktop/hacklabs/Splunk-DVWA/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb:/tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb
     networks:
       - dvwa-network
     ports:
@@ -38,6 +37,7 @@ services:
       - MYSQL_USER=dvwa
       - MYSQL_PASSWORD=p@ssw0rd
     volumes:
+      # Persist the database to avoid reinitialization each build
       - dvwa:/var/lib/mysql
     networks:
       - dvwa-network
