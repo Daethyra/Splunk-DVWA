@@ -4,28 +4,11 @@ volumes:
   dvwa:
 
 networks:
-  dvwa-network:
+  dmz:
     driver: bridge
     attachable: true
 
 services:
-  dvwa:
-    build: .
-    image: vulnerables/web-dvwa
-    pull_policy: build
-    container_name: dvwa
-    hostname: dvwa
-    environment:
-      - DB_SERVER=db
-      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
-    networks:
-      - dvwa-network
-    ports:
-      - "80:80"
-    restart: unless-stopped
-    depends_on:
-      - db
-  
   db:
     image: docker.io/library/mariadb:10
     environment:
@@ -37,8 +20,25 @@ services:
       # Persist the database to avoid reinitialization each build
       - dvwa:/var/lib/mysql
     networks:
-      - dvwa-network
+      dmz:
     restart: unless-stopped
+
+  dvwa:
+    build: .
+    image: vulnerables/web-dvwa
+    pull_policy: build
+    container_name: dvwa
+    hostname: dvwa
+    environment:
+      - DB_SERVER=db
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
+    networks:
+      dmz:
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - db
 
   splunk-receiver:
     image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
@@ -52,6 +52,6 @@ services:
       - 8000:8000 # web dashboard
       - 8089:8089 # listen for forwarders
     networks:
-      dvwa-network:
+      dmz:
     depends_on:
       - dvwa
