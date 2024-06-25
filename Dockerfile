@@ -24,6 +24,7 @@ COPY --chown=www-data:www-data config/config.inc.php.dist config/config.inc.php
 RUN useradd -m splunkfwd
 # Switch to Splunk user, set environment variables and configure PATH
 USER splunkfwd
+RUN mkdir -p /opt/splunkforwarder
 ENV SPLUNK_HOME=/opt/splunkforwarder
 ENV PATH=$SPLUNK_HOME/bin:$PATH
 
