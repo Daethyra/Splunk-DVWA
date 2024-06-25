@@ -14,26 +14,27 @@ RUN apt-get update \
  && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
  && docker-php-ext-configure gd --with-jpeg --with-freetype \
  # Use pdo_sqlite instead of pdo_mysql if you want to use sqlite
- && docker-php-ext-install gd mysqli pdo pdo_mysql \
- # Download the Splunk Universal Forwarder
- && wget -O /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/9.2.1/linux/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb"
+ && docker-php-ext-install gd mysqli pdo pdo_mysql
+
+COPY --chown=www-data:www-data . .
+COPY --chown=www-data:www-data config/config.inc.php.dist config/config.inc.php
 
 # Create Splunk user and group
-RUN useradd -m splunkfwd \
- # Install Splunk Forwarder
- && dpkg -i /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb \
- # Change ownership of $SPLUNK_HOME
- && chown -R splunkfwd:splunkfwd /opt/splunkforwarder
-
+## https://docs.splunk.com/Documentation/Forwarder/9.2.1/Forwarder/Installanixuniversalforwarder
+RUN useradd -m splunkfwd
 # Switch to Splunk user, set environment variables and configure PATH
 USER splunkfwd
 ENV SPLUNK_HOME=/opt/splunkforwarder
 ENV PATH=$SPLUNK_HOME/bin:$PATH
 
+# Download and Install Splunk Universal Forwarder
+RUN wget -O $SPLUNK_HOME/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/9.2.1/linux/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb" \
+ # Install Splunk Forwarder
+ && dpkg -i $SPLUNK_HOME/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb \
+ # Remove temporary files
+ && rm -f $SPLUNK_HOME/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb \
+ # Change ownership of $SPLUNK_HOME
+ && chown -R splunkfwd:splunkfwd $SPLUNK_HOME
+
 # Install custom Forwarder configurations
 COPY --chown=splunkfwd:splunkfwd config/*.conf $SPLUNK_HOME/etc/system/local/
-
-# Switch back to root before copying DVWA's files
-USER root
-COPY --chown=www-data:www-data . .
-COPY --chown=www-data:www-data config/config.inc.php.dist config/config.inc.php
