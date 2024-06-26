@@ -7,6 +7,10 @@ networks:
   dmz:
     driver: bridge
     attachable: true
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
 
 services:
   db:
@@ -21,6 +25,7 @@ services:
       - dvwa:/var/lib/mysql
     networks:
       dmz:
+        ipv4_address: 172.20.0.2
     restart: unless-stopped
 
   dvwa:
@@ -34,6 +39,7 @@ services:
       - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-daethyradefault}
     networks:
       dmz:
+        ipv4_address: 172.20.0.3
     ports:
       - "80:80"
     restart: unless-stopped
@@ -53,5 +59,6 @@ services:
       - 8089:8089 # listen for forwarders
     networks:
       dmz:
+        ipv4_address: 172.20.0.4
     depends_on:
       - dvwa
