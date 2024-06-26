@@ -32,14 +32,11 @@ RUN wget -O /tmp/splunkforwarder-9.2.1-78803f08aabb-linux-2.6-amd64.deb "https:/
 # Switch to Splunk user, set environment variables and configure PATH
 USER splunkfwd
 ENV SPLUNK_HOME=/opt/splunkforwarder
-ENV PATH=$SPLUNK_HOME/bin:$PATH
+ENV PATH=${SPLUNK_HOME}/bin:$PATH
 
 # Configure Forwarder's monitoring
 ## Remember to overwrite DVWA's config folder with this repository's config folder before building!
 COPY --chown=splunkfwd:splunkfwd config/*.conf /opt/splunkforwarder/etc/system/local/
-
-# Start Splunk Forwarder
-RUN splunk start --accept-license --no-prompt
 
 # Switch to Root to let DVWA finish its build as normal
 USER root
