@@ -36,7 +36,7 @@ ENV PATH=$SPLUNK_HOME/bin:$PATH
 
 # Configure Forwarder's monitoring
 ## Remember to overwrite DVWA's config folder with this repository's config folder before building!
-COPY --chown=splunkfwd:splunkfwd config/*.conf $SPLUNK_HOME/etc/system/local/
+COPY --chown=splunkfwd:splunkfwd config/*.conf /opt/splunkforwarder/etc/system/local/
 
 # Start Splunk Forwarder
 RUN splunk start --accept-license --no-prompt
