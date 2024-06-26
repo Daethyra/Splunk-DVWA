@@ -34,5 +34,12 @@ USER splunkfwd
 ENV SPLUNK_HOME=/opt/splunkforwarder
 ENV PATH=$SPLUNK_HOME/bin:$PATH
 
-# Install custom Forwarder configurations
+# Configure Forwarder's monitoring
+## Remember to overwrite DVWA's config folder with this repository's config folder before building!
 COPY --chown=splunkfwd:splunkfwd config/*.conf $SPLUNK_HOME/etc/system/local/
+
+# Start Splunk Forwarder
+RUN splunk start --accept-license --no-prompt
+
+# Switch to Root to let DVWA finish its build as normal
+USER root
